@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Color Clock</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        
+        
+        <style type="text/css" media="screen">
+
+            html, body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+
+            body {
+                background-color: #552A7F;
+            }
+
+            #clock {
+                position: absolute;
+                top: 50%;
+                left:50%;
+                transform:          translate(-50%, -50%);
+                -webkit-transform:  translate(-50%, -50%);
+                -moz-transform:     translate(-50%, -50%);
+                -o-transform:       translate(-50%, -50%);
+                -ms-transform:      translate(-50%, -50%);
+                color: #FFFFFF;
+            }
+
+            .visibleText {
+                display: block;
+                font-size:15vw;
+                font-family: "HelveticaNeue-UltraLight",sans-serif;
+                text-align: center;
+                opacity: 0.8;
+            }
+
+            #selectors {
+                text-align: center;
+            }
+
+            #selectors a {
+                display: inline-block;
+                width: 49%;
+                height: 30px;
+                background-color:#CCCCCC;
+                opacity: 0.5;
+            }
+
+            #selectors a.active{
+                opacity: 0.8;
+            }
+
+            #selectors a:hover{
+                opacity: 1;
+            }
+
+            .noSelect {
+                user-select:                  none;
+                -webkit-user-select:          none;
+                -moz-user-select:             none;
+                -o-user-select:               none;
+                -ms-user-select:              none;
+                -webkit-tap-hightlight-color: 0;
+                -webkit-touch-callout:        none;
+            }
+        </style>
+
+
+<script
+src="https://code.jquery.com/jquery-2.2.4.min.js"
+integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
+
+      <script> 
+          $(document).ready(function() {
+
+              function clockUpdate() {
+                  var date = new Date();
+
+                  var hours = date.getHours();
+                  var minutes = date.getMinutes();
+                  var seconds = date.getSeconds();
+
+                  $("#time").text( padZero(hours) + ":" + padZero(minutes) + ":" + padZero(seconds) );
+              }
+              clockUpdate();
+              setInterval(clockUpdate, 1000);
+
+              function padZero(val) {
+
+                  var paddedVal;
+
+                  if (val < 10) {
+                      paddedVal = "0" + val
+                  } else {
+                      paddedVal = val;
+                  }
+
+                  return paddedVal;
+              }
+
+
+          });
+      </script>
+        
+    </head>
+    <body>
+        <div id="clock">
+            <div id="textDisplay"> 
+                <div id="time" class="visibleText  noSelect" >00:00:00</div>
+                
+                <div class="visibleText  noSelect" style="display:none;">#000000</div>
+            </div>
+            <div id="selectors">
+                <a herf="#time" class="active"></a> <a herf="#hex"></a>
+            </div>
+
+        </div>
+
+    
+</body>
+
+</html>
